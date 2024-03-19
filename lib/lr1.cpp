@@ -2,6 +2,7 @@
 #include <vector>
 #include <tuple>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ tuple<vector<float>, float, vector<error>> getProductOfMultiples(const vector<fl
 
     if (multiple <= 0)
         errors.emplace_back("Заданное число должно быть больше нуля.", 1);
+   
 
     if (arr.empty())
         errors.emplace_back("Переданная коллекция не должна быть пустой.", 2);
@@ -40,6 +42,7 @@ tuple<vector<float>, float, vector<error>> getProductOfMultiples(const vector<fl
             break;
         }
     }
+    
 
     return make_tuple(products, total, errors);
 }
