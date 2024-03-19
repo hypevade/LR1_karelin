@@ -1,5 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include "lr1.cpp"
+using namespace std;
 
-std::pair<int, int> countAndSum(const std::vector<int>& array);
+tuple<vector<float>, float, vector<error>> getProductOfMultiples(const vector<float>& arr, int multiple);
+class error;

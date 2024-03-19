@@ -2,72 +2,162 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <utility>
+#include <string>
+#include <limits>
 
-// Подробнее https://google.github.io/googletest/reference/testing.html
+using namespace std;
 
-// Тестовый класс
-class CountAndSumTest : public ::testing::Test {
-protected:
-    // Здесь вы можете добавить дополнительные настройки для тестов
-    // в функции SetUp()
-    void SetUp() override {
-        // Например, инициализация данных
-        arr = {10, 14, 15, 20, 21, 25, 30};
-    }
+TEST(PositiveScenarios, Should_return_success_when_correct_input) 
+{
+    float numeber = 10;
+    vector<float> arr = {numeber}; 
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, 2);
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
 
-    // Здесь вы можете освободить ресурсы, если это необходимо
-    // в функции TearDown()
-    void TearDown() override {
-        // Например, очистка данных
-        arr.clear();
-    }
-
-    // Объявляем переменные, которые будут использоваться в тестах
-    std::vector<int> arr;
-    std::pair<int, int> result;
-};
-
-// Пример теста1
-TEST_F(CountAndSumTest, CTest1) {
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
-
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 5);
-    EXPECT_EQ(result.second, 100);
+    EXPECT_EQ(resultCollection.size(), 1);
+    EXPECT_EQ(resultMult, numeber);
+    EXPECT_EQ(resultErrors.empty(), true);    
 }
 
-// Пример теста111111
-TEST_F(CountAndSumTest, CTest11111) {
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST(PositiveScenarios, Should_return_first_number_when_greater_than_arr_size)
+{
+    float firstNumeber = 10;
+    vector<float> arr = {firstNumeber, 14, 15, 20, 21, 25, 30}; 
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, 100);
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
 
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 5);
-    EXPECT_EQ(result.second, 100);
+    EXPECT_EQ(resultCollection.size(), 1);
+    EXPECT_EQ(resultMult, firstNumeber);
+    EXPECT_EQ(resultErrors.empty(), true);    
 }
 
-// Пример теста 2
-TEST_F(CountAndSumTest, CTest2) {
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST(PositiveScenarios, Should_return_all_numbers_when_multiple_is_one)
+{
+    vector<float> arr = {1, 2, 3, 4, 5};
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, 1);
 
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 15);
-    EXPECT_EQ(result.second, 100);
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultCollection.size(), 5);
+    EXPECT_EQ(resultMult, 1 * 2 * 3 * 4 * 5);
+    EXPECT_EQ(resultErrors.empty(), true);    
 }
 
-// Пример теста3
-TEST(CountAndSumTest1, CTest3) {
-    // Объявляем переменные, которые будут использоваться в тесте
-    std::vector<int> arr;
-    std::pair<int, int> result;
-    // Инициализация данных
-    arr = {10, 14, 15, 20, 21, 25, 30, 35, 5};
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST(PositiveScenarios, Should_return_correct_answer_when_collection_contains_negative_numbers)
+{
+    vector<float> arr = {1, -2, 3, -4, 5};
+    int multiple = 2;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
 
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 6);
-    EXPECT_EQ(result.second, 105);
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultCollection.size(), 3);
+    EXPECT_EQ(resultMult, 15);
+    EXPECT_EQ(resultErrors.empty(), true);    
+}
+
+TEST(NegativeScenarios, Should_return_error_when_multiple_is_zero) 
+{
+    vector<float> arr = {1, 2};
+    int multiple = 0;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
+            
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 1);
+    bool isEqual = resultErrors[0].message == "Заданное число должно быть больше нуля." && resultErrors[0].code == 1;
+
+    EXPECT_EQ(isEqual, true);    
+}
+
+TEST(NegativeScenarios, Should_return_error_when_multiple_is_negative_number)
+{
+    vector<float> arr = {1, 2};
+    int multiple = -1;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
+            
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 1);
+
+    bool isEqual = resultErrors[0].message == "Заданное число должно быть больше нуля." && resultErrors[0].code == 1;
+    EXPECT_EQ(isEqual, true);    
+}
+
+TEST(NegativeScenarios, Should_return_error_when_empty_collection)
+{
+    vector<float> arr = {};
+    int multiple = 1;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
+            
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 1);
+    bool isEqual = resultErrors[0].message == "Переданная коллекция не должна быть пустой." && resultErrors[0].code == 2;
+   
+    EXPECT_EQ(isEqual, true);    
+}
+
+TEST(GetProducNegativeScenariostOfMultiples, Should_return_error_when_big_collection)
+{
+    vector<float> arr(1025, 1.0);
+    int multiple = 1;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
+            
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 1);
+    bool isEqual = resultErrors[0].message == "В переданной коллекции должно быть меньше 1024 элементов." && resultErrors[0].code == 3;
+    EXPECT_EQ(isEqual, true);    
+}
+
+TEST(NegativeScenarios, Should_return_errors_when_invalid_multiple_and_collection)
+{
+    vector<float> arr(1025, 1.0);
+    int multiple = 0;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(arr, multiple);
+            
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 2);    
+}
+
+TEST(NegativeScenarios, Should_return_errors_when_invalid_multiple_and_collection1)
+{
+    vector<float> largeValues = { 1e38f, 2e38f };
+    int multiple = 1;
+    tuple<vector<float>, float, vector<error>> result = getProductOfMultiples(largeValues, multiple);
+
+    vector<float> resultCollection = get<0>(result);
+    float resultMult = get<1>(result);
+    vector<error> resultErrors = get<2>(result);
+
+    EXPECT_EQ(resultErrors.empty(), false);
+    EXPECT_EQ(resultErrors.size(), 1);
+
+    bool isEqual = resultErrors[0].message == "Произошло переполнение при умножении." && resultErrors[0].code == 4;
+    EXPECT_EQ(isEqual, true);   
 }

@@ -1,0 +1,13 @@
+# ninja log v5
+3	266	7325643470338114	lib/CMakeFiles/lr1_lib.dir/lr1.cpp.obj	c1770afc9503bb72
+266	290	7325643470528118	lib/lr1_lib.lib	88659e9d1186384b
+6	660	7325643474268108	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	1f9de9c08b439e65
+4	733	7325643474998118	tests/CMakeFiles/lr1_tests.dir/lr1_test.cpp.obj	7910c70614c7d0f8
+5	1442	7325643482068115	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	a0b7801f2f8443b4
+1443	1581	7325643482368115	lib/gtest.lib	8fc55d1033322c5d
+1581	1596	7325643483638112	lib/gtest_main.lib	8d2033cd5deebc3a
+1596	1932	7325643487008114	tests/lr1_tests.exe	ddb3bf6b4c0b702b
+1596	1932	7325643487008114	tests/lr1_tests[1]_tests.cmake	ddb3bf6b4c0b702b
+1596	1932	7325643487008114	C:/Git/LR1_karelin/out/build/x64-Debug/tests/lr1_tests[1]_tests.cmake	ddb3bf6b4c0b702b
+2	368	7325643561418794	bin/CMakeFiles/LR1.dir/main.cpp.obj	37e08b33b2fb69f4
+368	501	7325643562648795	bin/LR1.exe	c63225a629eca34a
