@@ -4,6 +4,12 @@ C:/Git/LR1_karelin/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/CMakeFiles/list_install_components.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/CMakeFiles/install.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/CMakeFiles/install/local.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/test.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/edit_cache.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/rebuild_cache.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/list_install_components.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/install.dir
+C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/CMakeFiles/install/local.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/lib/CMakeFiles/lr1_lib.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/lib/CMakeFiles/test.dir
 C:/Git/LR1_karelin/out/build/x64-Debug/lib/CMakeFiles/edit_cache.dir

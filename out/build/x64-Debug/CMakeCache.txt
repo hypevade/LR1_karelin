@@ -275,11 +275,18 @@ FETCHCONTENT_QUIET:BOOL=ON
 // for googletest
 FETCHCONTENT_SOURCE_DIR_GOOGLETEST:PATH=
 
+//When not empty, overrides where to find pre-populated content
+// for json
+FETCHCONTENT_SOURCE_DIR_JSON:PATH=
+
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of googletest
 FETCHCONTENT_UPDATES_DISCONNECTED_GOOGLETEST:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of json
+FETCHCONTENT_UPDATES_DISCONNECTED_JSON:BOOL=OFF
 
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
@@ -287,6 +294,27 @@ GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
 //Enable installation of googletest. (Projects embedding googletest
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
+
+//Build the unit tests when BUILD_TESTING is enabled.
+JSON_BuildTests:BOOL=OFF
+
+//Enable CI build targets.
+JSON_CI:BOOL=OFF
+
+//Use extended diagnostic messages.
+JSON_Diagnostics:BOOL=OFF
+
+//Enable implicit conversions.
+JSON_ImplicitConversions:BOOL=ON
+
+//Install CMake targets during install step.
+JSON_Install:BOOL=OFF
+
+//Use non-amalgamated version of the library.
+JSON_MultipleHeaders:BOOL=OFF
+
+//Include as system headers (skip for clang-tidy).
+JSON_SystemInclude:BOOL=OFF
 
 //Value Computed by CMake
 LR1_BINARY_DIR:STATIC=C:/Git/LR1_karelin/out/build/x64-Debug
@@ -345,6 +373,15 @@ gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
+
+//Value Computed by CMake
+nlohmann_json_BINARY_DIR:STATIC=C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build
+
+//Value Computed by CMake
+nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+nlohmann_json_SOURCE_DIR:STATIC=C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-src
 
 
 ########################
@@ -475,7 +512,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -527,6 +564,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[C:/Users/SystemX/AppData/Local/Pro
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=lib/cmake/nlohmann_json
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Git/LR1_karelin/out/install/x64-Debug
 //Compiler reason failure

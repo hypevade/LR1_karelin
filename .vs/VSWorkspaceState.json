@@ -7,8 +7,9 @@
   },
   "ExpandedNodes": [
     "",
+    "\\bin",
+    "\\data",
     "\\lib",
-    "\\out",
     "\\tests"
   ],
   "PreviewInSolutionExplorer": false

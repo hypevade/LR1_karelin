@@ -15,20 +15,21 @@ public:
 };
 
 tuple<vector<float>, float, vector<error>> getProductOfMultiples(const vector<float>& arr, int multiple) {
-    
+   
+    setlocale(LC_ALL, "RU");
     vector<float> products;
     vector<error> errors;
     float total = 1;
 
     if (multiple <= 0)
-        errors.emplace_back("Заданное число должно быть больше нуля.", 1);
+        errors.emplace_back("The specified number must be greater than zero.", 1);
    
 
     if (arr.empty())
-        errors.emplace_back("Переданная коллекция не должна быть пустой.", 2);
+        errors.emplace_back("The passed collection must not be empty.", 2);
 
     if (arr.size() > 1024)
-        errors.emplace_back("В переданной коллекции должно быть меньше 1024 элементов.", 3);
+        errors.emplace_back("The passed collection must contain fewer than 1024 elements.", 3);
 
     if (!errors.empty())
         return make_tuple(products, total, errors);
@@ -38,7 +39,7 @@ tuple<vector<float>, float, vector<error>> getProductOfMultiples(const vector<fl
         total *= arr[i];
         if (isinf(total))
         {
-            errors.emplace_back("Произошло переполнение при умножении.", 4);
+            errors.emplace_back("An overflow occurred during multiplication.", 4);
             break;
         }
     }

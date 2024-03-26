@@ -34,6 +34,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Git/LR1_karelin/out/build/x64-Debug/_deps/json-build/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Git/LR1_karelin/out/build/x64-Debug/lib/cmake_install.cmake")
 endif()
 
