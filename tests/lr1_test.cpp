@@ -7,15 +7,26 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <filesystem>
+#include <stdexcept> 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
 using namespace std;
 
 
-string readFileIntoString(string path) 
-{
+string readFileIntoString(const string& path) {
+    // Проверяем, существует ли файл
+    if (!filesystem::exists(path)) {
+        throw runtime_error("File does not exist: " + path);
+    }
+
     ifstream fileStream(path);
+    // Проверяем, успешно ли открылся файл
+    if (!fileStream.is_open()) {
+        throw runtime_error("Failed to open file: " + path);
+    }
+
     stringstream buffer;
     buffer << fileStream.rdbuf();
     return buffer.str();
@@ -54,14 +65,24 @@ vector<TestCase> parseTestCasesFromJson(const string& jsonString) {
 }
 
 
+
 class TestFixture : public ::testing::Test {
 protected:
     // Здесь вы можете добавить дополнительные настройки для тестов
     // в функции SetUp()
     void SetUp() override
     {
-        
-        fileInput = readFileIntoString("../../../../data/tests.json");
+        string path = "data/tests.json";
+        do
+        {
+            string tmp = path;
+            path = "../" + tmp;
+        } while (!filesystem::exists(path));
+        fileInput = readFileIntoString(path);
+        /*if(filesystem::exists("../../../../data/tests.json"))
+            fileInput = readFileIntoString("../../../../data/tests.json");
+        if(filesystem::exists("../../../../data/tests.json"))
+            fileInput = readFileIntoString("../data/tests.json");*/
         cases = parseTestCasesFromJson(fileInput);
 
         /*char cwd[FILENAME_MAX];
